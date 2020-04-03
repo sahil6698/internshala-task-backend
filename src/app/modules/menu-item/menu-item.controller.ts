@@ -14,9 +14,14 @@ export default class MenuItemController {
 
 
     @Get('')
-    public async getMe(@Query('restaurantId') restaurantId: number):
+    public async getMenu(@Query('restaurantId') restaurantId: number):
         Promise<ReturnVal<Partial<MenuItemEntity>[]>> {
         return this.menuItemService.getMenu(restaurantId);
+    }
+
+    @Get('restaurant')
+    public async getRestaurantMenu(@AuthDetail() authDetail: IAuthDetail): Promise<ReturnVal<object[]>> {
+        return this.menuItemService.getRestaurantMenu(authDetail)
     }
 
     @Post('')

@@ -4,6 +4,7 @@ import ReturnVal from "../../lib/returnval";
 import MenuItemEntity from "../../../db/entities/menu-item.entity";
 import CreateMenuItemDto from "./dto/create-menu.dto";
 import IAuthDetail from "../../interfaces/auth-detail.interface";
+import EUserRole from "../../enums/user-role.enum";
 
 @Injectable()
 export default class MenuItemService {
@@ -25,6 +26,31 @@ export default class MenuItemService {
                 relations: ['restaurant']
             });
         }
+        const entityMap = [] ;
+        for (const menuItem of menuItemEntities){
+            const restaurant = await menuItem.restaurant;
+            entityMap.push({
+                id : menuItem.id,
+                title: menuItem.title,
+                type: menuItem.type,
+                category: menuItem.category,
+                calories: menuItem.calories,
+                price: menuItem.price,
+                restaurantName: restaurant.name,
+                restaurantId: restaurant.id,
+            })
+        }
+        return ReturnVal.success(entityMap);
+    }
+
+    public async getRestaurantMenu(authDetail: IAuthDetail): Promise<ReturnVal<object[]>> {
+        if (authDetail.currentUser.role !== EUserRole.RESTAURANT) {
+            throw new UnauthorizedException();
+        }
+        const menuItemEntities = await MenuItemEntity.find({
+            where: {restaurantId: authDetail.currentUser.restaurantId},
+            relations: ['restaurant']
+        });
         const entityMap = [] ;
         for (const menuItem of menuItemEntities){
             const restaurant = await menuItem.restaurant;
