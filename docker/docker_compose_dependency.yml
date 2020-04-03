@@ -1,0 +1,12 @@
+version: "3.7"
+services:
+  db:
+    image: postgres:11.4
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=internshala-backend
+    volumes:
+      - "/var/docker_volumes/internshala-backend:/var/lib/postgresql/data"
