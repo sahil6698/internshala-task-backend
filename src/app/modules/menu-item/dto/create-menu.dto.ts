@@ -1,6 +1,6 @@
 import EMenuItemType from "../../../enums/menu-item-type.enum";
 import EMenuItemCategory from "../../../enums/menu-item-category.enum";
-import {IsIn, IsNumber, IsString, MaxLength, MinLength} from "class-validator";
+import {IsIn, IsNumber, IsString, Max, MaxLength, Min, MinLength} from "class-validator";
 
 class CreateMenuDto {
 
@@ -17,10 +17,14 @@ class CreateMenuDto {
 
     @IsNumber({allowNaN: false,
     allowInfinity: false}, {message: 'Price should be a number'})
+    @Min(1, {message: 'Price should be minimum 1'})
+    @Max(10000, {message: 'Price cannot exceed 10000'})
     public price: number;
 
     @IsNumber({allowNaN: false,
         allowInfinity: false}, {message: 'Calories should be a number'})
+    @Min(1, {message: 'Calories should be minimum 1'})
+    @Max(10000, {message: 'Calories cannot exceed 10000'})
     public calories: number;
 }
 

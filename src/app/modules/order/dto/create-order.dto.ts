@@ -2,7 +2,8 @@ import {IsNumber} from "class-validator";
 
 class CreateOrderDto {
 
-    @IsNumber({}, {message: 'Invalid restaurant id'})
+    @IsNumber({allowNaN: false,
+        allowInfinity: false}, {message: 'Invalid restaurant id'})
     public restaurantId: number;
 
 
