@@ -27,7 +27,7 @@ import MenuItemModule from "./modules/menu-item/menu-item.module";
           password: process.env.DB_PASSWORD,
           synchronize: true,
           port: 5432,
-          host: 'process.env.DB_HOST',
+          host: process.env.DB_HOST,
           database: process.env.DB_NAME
       })
   ]
