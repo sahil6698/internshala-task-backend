@@ -1,6 +1,6 @@
 import JWT from 'jsonwebtoken';
 import * as UUIDV4 from 'uuid/v4';
-import ReturnVal from '../../lib/ReturnVal';
+import ReturnVal from '../../lib/returnval';
 import UserEntity from "../../../db/entities/user.entity";
 import EUserStatus from "../../enums/user-status.enum";
 

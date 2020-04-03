@@ -1,5 +1,5 @@
 import {HttpException, Injectable} from '@nestjs/common';
-import ReturnVal from '../../lib/ReturnVal';
+import ReturnVal from '../../lib/returnval';
 import UserEntity from "../../../db/entities/user.entity";
 import IAuthDetail from "../../interfaces/auth-detail.interface";
 import CreateUserDto from "./dto/create-user.dto";
