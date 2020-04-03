@@ -21,7 +21,7 @@ class OrderService {
                 where: {
                     restaurantId: currentUser.restaurantId
                 },
-                relations: ['user']
+                relations: ['user', 'restaurant']
             });
 
 
@@ -30,11 +30,12 @@ class OrderService {
                 where: {
                     userId: currentUser.id
                 },
-                relations: ['user']
+                relations: ['user', 'restaurant']
             });
         }
         for (const order of orderEntities) {
             const user = await order.user;
+            const restaurant = await order.restaurant;
             const menuItem = await MenuItemEntity.findOne({
                 where: {
                     id: order.item
@@ -45,6 +46,7 @@ class OrderService {
                 email: user.email,
                 item: menuItem.title,
                 total: order.total,
+                restaurantName: restaurant.name
             })
         }
         return ReturnVal.success(orderEntitiesMap);
