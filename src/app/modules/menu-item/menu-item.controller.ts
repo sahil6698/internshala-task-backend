@@ -20,6 +20,7 @@ export default class MenuItemController {
     }
 
     @Get('restaurant')
+    @UseGuards(AuthenticationGuard)
     public async getRestaurantMenu(@AuthDetail() authDetail: IAuthDetail): Promise<ReturnVal<object[]>> {
         return this.menuItemService.getRestaurantMenu(authDetail)
     }
