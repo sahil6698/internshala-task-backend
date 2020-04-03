@@ -16,8 +16,8 @@ export class CreateRestaurantDto {
 
 class CreateUserDto {
     @IsString({message: 'Name must be a valid string'})
-    @MinLength(4, {message: 'Title should be minimum length 4'})
-    @MaxLength(10, {message: 'Title can have a maximum length of 10'})
+    @MinLength(4, {message: 'Name should be minimum length 4'})
+    @MaxLength(10, {message: 'Name can have a maximum length of 10'})
     public name: string;
 
     @IsEmail({}, {message: 'Please provide a valid email'})
@@ -29,7 +29,7 @@ class CreateUserDto {
     public username: string;
 
     @IsString()
-    @MinLength(6, {message: 'Password should be minimum length 4'})
+    @MinLength(6, {message: 'Password should be minimum length 6'})
     @MaxLength(30, {message: 'Password can have a maximum length of 30'})
     public password: string;
 
